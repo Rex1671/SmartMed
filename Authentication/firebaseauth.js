@@ -19,7 +19,7 @@ const auth = getAuth();
 const userId = localStorage.getItem('loggedInUserId');
 console.log("User id"+userId)
 if(userId!=null){
-    window.location.href='../HomePage/webs.html';
+    window.location.href='HomePage/webs.html';
 }
 
 
@@ -71,7 +71,7 @@ signUp.addEventListener('click', (event) => {
 
             set(ref(db, 'patients/' + user.uid + '/userdata'), userData)
                 .then(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = 'https://rex1671.github.io/SmartMed/';
                 })
                 .catch((error) => {
                     console.error("Error writing data to database", error);
@@ -99,7 +99,7 @@ signIn.addEventListener('click', (event) => {
             showMessage('Login is successful', 'signInMessage');
             const user = userCredential.user;
             localStorage.setItem('loggedInUserId', user.uid);
-            window.location.href = '../HomePage/webs.html';
+            window.location.href = 'HomePage/webs.html';
         })
         .catch((error) => {
             const errorCode = error.code;
