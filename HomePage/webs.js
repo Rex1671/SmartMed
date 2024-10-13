@@ -1,6 +1,6 @@
 const profileButton = document.getElementById('profileButton'); 
 profileButton.addEventListener('click', () => {
-    window.location.href = 'https://rex1671.github.io/SmartMed/Profile/profile.html'; 
+    window.location.href = 'profile.html'; 
 });
 
 const userId = localStorage.getItem('loggedInUserId');
