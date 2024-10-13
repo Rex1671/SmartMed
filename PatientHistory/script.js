@@ -82,7 +82,7 @@ function createSessionCard(sessionId, sessionData) {
         sessionStorage.clear();
          sessionStorage.setItem('sessionId', sessionId); 
   
-     window.location.href = `https://rex1671.github.io/MedicalPlan/medicalplan.html`;  });
+     window.location.href = `https://rex1671.github.io/SmartMed/MedicalPlan/medicalplan.html`;  });
 
     return card;
 }
