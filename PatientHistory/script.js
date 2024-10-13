@@ -79,7 +79,9 @@ function createSessionCard(sessionId, sessionData) {
 
     card.addEventListener('click', () => {
         console.log("Session ID :"+sessionId)
-     window.location.href = `https://rex1671.github.io/MedicalPlan/medicalplan.html?sessionId=${sessionId}`;  });
+         sessionStorage.setItem('sessionId', sessionId); 
+  
+     window.location.href = `https://rex1671.github.io/MedicalPlan/medicalplan.html`;  });
 
     return card;
 }
