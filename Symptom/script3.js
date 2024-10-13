@@ -288,10 +288,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Change event listener added to file input");
     }
 
-    if (elements.submitButton) {
-        elements.submitButton.addEventListener('click', handleSubmit);
-        console.log("Click event listener added to submit button");
-    }
+    // if (elements.submitButton) {
+    //     elements.submitButton.addEventListener('click', handleSubmit);
+    //     console.log("Click event listener added to submit button");
+    // }
 
     function handleFileUpload(event) {
         console.log("File upload handler called");
