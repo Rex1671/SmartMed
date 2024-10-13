@@ -27,7 +27,8 @@ const patientId = "0Kf0yUzc4Oa1nDUda8s1HjtKJz12";
 
 async function init() {
     try {
-        const sessionId = new URLSearchParams(window.location.search).get('sessionId');
+         const sessionId = sessionStorage.getItem('sessionId');
+         console.log("Retrieved Session ID from sessionStorage: " + sessionId);
         if (sessionId) {
             await fetchUserData();
             await fetchSessionData(sessionId);
