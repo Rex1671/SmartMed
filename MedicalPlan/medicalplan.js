@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 
-const API_KEY = "AIzaSyAMVaJCmvrpE_gBXmYjnOBS_c7dbSB-92o";
+const API_KEY = "AIzaSyB02yYJ-YslH0c7KmCBiC7iQCHPiPO2xXg";
 
 
 
