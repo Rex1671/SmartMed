@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Sending request to Gemini with prompt:", prompt);
      
         const genAI = new GoogleGenerativeAI(API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-002" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const contentParts = [prompt];
         
