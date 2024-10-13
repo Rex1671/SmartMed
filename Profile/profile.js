@@ -5,7 +5,7 @@ const auth = getAuth();
 const userId = localStorage.getItem('loggedInUserId');
 
 if (!userId) {
-    window.location.href = '../HomePage/webs.html';
+    window.location.href = 'HomePage/webs.html';
 } else {
     fetchProfileData(userId);
 }
