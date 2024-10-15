@@ -621,7 +621,7 @@ function submitFollowUpAnswers(questions) {
 let currentSymptoms = ""; 
 let intialsymptom="";
 async function askGemini() {
- console.log("askGemini opened)
+ console.log("askGemini opened")
     const prompt = document.getElementById("prompt").value;
     intialsymptom=prompt;
     currentSymptoms=prompt;
