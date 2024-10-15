@@ -385,7 +385,7 @@ async function callGeminiAgain(initialDiagnosis, imagePath, symptoms,prompt) {
     const refinedPrompt = createRefinedPrompt(initialDiagnosis);
  console.log("Refined Prompt:"+refinedPrompt);
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-002" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
     try {
         const result = await model.generateContentStream(refinedPrompt);
