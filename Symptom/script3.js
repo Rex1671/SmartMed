@@ -389,7 +389,7 @@ async function callGeminiAgain(initialDiagnosis, imagePath, symptoms,prompt) {
 
     try {
         const result = await model.generateContentStream(refinedPrompt);
-        console.log("API Result: ", result);
+        console.dir("API Result: ", result);
 
         const cleanedResultText = await processStream(result.stream);
         
@@ -410,8 +410,7 @@ async function callGeminiAgain(initialDiagnosis, imagePath, symptoms,prompt) {
 
 function createRefinedPrompt(initialDiagnosis) {
   console.log("createRefinedPrompt opened ", initialDiagnosis);
-    console.log("initialDiagnosis after  submitting follow-up answers: ", initialDiagnosis);
-
+  
     return  `You are provided with text that analyzes medical information, potentially including medical diagnoses: '${initialDiagnosis}'. Your task is to extract the medical condition described in the text while filtering out disclaimers and irrelevant information.
 
 **Instructions:**
@@ -455,7 +454,7 @@ function createRefinedPrompt(initialDiagnosis) {
 }
 
 async function processStream(stream) {
- console.log("processStream opened"+stream)
+ console.dir("processStream opened"+stream)
     let cleanedResultText = ""; 
     if (stream) {
         for await (const chunk of stream) {
