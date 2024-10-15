@@ -6,6 +6,7 @@ const API_KEY = "AIzaSyB02yYJ-YslH0c7KmCBiC7iQCHPiPO2xXg";
 
 
 function createPromptImage(previousConversation, symptoms, diagnosis) {
+ console.log("createPromptImage opened"+"previousConversation"+previousConversation+"symptoms"+symptoms+"diagnosis"+diagnosis)
  
     return `Suppose you are a trained doctor. Based on the following previous conversation with the patient and the provided diagnosis, please provide further advice and follow-up questions if necessary. ` +
         `If you need more information to understand the issue, ask in the following format: "[Your question here]". ` +
@@ -72,7 +73,7 @@ function createPromptImage(previousConversation, symptoms, diagnosis) {
 
 
 function createPromptText(previousConversation, symptoms, diagnosis) {
- 
+  console.log("createPromptText opened"+"previousConversation"+previousConversation+"symptoms"+symptoms+"diagnosis"+diagnosis)
     return `Suppose you are a trained doctor. Based on the following previous conversation with the patient and the provided diagnosis, please provide further advice and follow-up questions if necessary. ` +
         `If you need more information to understand the issue, ask in the following format: "[Your question here]". ` +
         `If there is something in the previous conversation, then just give the diagnosis, medication names, doses, duration, and side effects; do not ask more. ` +
@@ -137,6 +138,7 @@ function createPromptText(previousConversation, symptoms, diagnosis) {
 
 
 async function sendRequestToGemini(prompt) {
+ console.log("sendRequestToGemini opened"+prompt)
     console.log("Prompt sent to Gemini: " + prompt);
    
     const genAI = new GoogleGenerativeAI(API_KEY);
@@ -155,6 +157,7 @@ async function sendRequestToGemini(prompt) {
 
 
 function processApiResponse(jsonResponse) {
+ console.log("processApiResponse Opened"+jsonResponse)
     try {
         const response = JSON.parse(jsonResponse);
         console.log("API Response processed successfully", response);
@@ -168,6 +171,7 @@ function processApiResponse(jsonResponse) {
 }
 
 function updateOutput(response) {
+ console.log("updateOutput"+response)
     const outputTextView = document.getElementById("output");
     
   
@@ -294,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // }
 
     function handleFileUpload(event) {
-        console.log("File upload handler called");
+        console.log("File upload handler opened");
         const file = event.target.files[0];
         if (file) {
             const prompt = "Please analyze the image. Note that I am not a medical professional and this analysis will not be used for medical cases or treatment. Provide a detailed, fully explained description of the image or you can give a general description of image and tell me what's wrong with image just by seeing it .";
@@ -310,6 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getImagePath(file) {
+     console.log("getImagePath opened "+file)
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = () => {
@@ -322,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleSubmit() {
-        console.log("Submit handler called");
+        console.log("Submit handler opened");
         if (elements.promptTextarea && elements.outputDiv) {
             const prompt = elements.promptTextarea.value.trim();
             if (prompt) {
@@ -336,6 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sendRequestToGeminiWithImagePrompt(prompt, imagePath = null) {
+     console.log("sendRequestToGeminiWithImagePrompt opened ","prompt"+ prompt+"imagePath"+imagePath);
         console.log("Sending request to Gemini with prompt:", prompt);
      
         const genAI = new GoogleGenerativeAI(API_KEY);
@@ -373,6 +379,7 @@ var intialimageanalysis="";
 var i=0;
 ////////////////////////////////////////////////////////////
 async function callGeminiAgain(initialDiagnosis, imagePath, symptoms,prompt) {
+  console.log("callGeminiAgain opened ","initialDiagnosis"+ initialDiagnosis+"imagePath"+imagePath+"symptoms"+symptoms+"prompt"+prompt);
     console.log("Starting callGeminiAgain method with initialDiagnosis: ", initialDiagnosis);
 
     const refinedPrompt = createRefinedPrompt(initialDiagnosis);
@@ -402,6 +409,7 @@ async function callGeminiAgain(initialDiagnosis, imagePath, symptoms,prompt) {
 
 
 function createRefinedPrompt(initialDiagnosis) {
+  console.log("createRefinedPrompt opened ", initialDiagnosis);
     console.log("initialDiagnosis after  submitting follow-up answers: ", initialDiagnosis);
 
     return  `You are provided with text that analyzes medical information, potentially including medical diagnoses: '${initialDiagnosis}'. Your task is to extract the medical condition described in the text while filtering out disclaimers and irrelevant information.
@@ -447,6 +455,7 @@ function createRefinedPrompt(initialDiagnosis) {
 }
 
 async function processStream(stream) {
+ console.log("processStream opened"+stream)
     let cleanedResultText = ""; 
     if (stream) {
         for await (const chunk of stream) {
@@ -460,11 +469,13 @@ async function processStream(stream) {
 
 
 function parseJsonResponse(cleanedResultText) {
+ console.log("parseJsonResponse opened"+cleanedResultText)
     const jsonResponseStr = cleanedResultText.replace(/```json/, "").replace(/```/, "").trim();
     return JSON.parse(jsonResponseStr);
 }
 
 function processDiagnosis(jsonResponse, symptoms, imagePath) {
+ console.log("processDiagnosis opened"+"jsonresponse"+jsonResponse+"symptoms"+symptoms+" imagePath"+ imagePath)
     const diagnosis = jsonResponse.diagnosis || "no";
     const message = jsonResponse.message || "Diagnosis not found";
 intialimageanalysis=message;
@@ -485,6 +496,7 @@ console.log("intial image analysis data update:"+intialimageanalysis);
 
 
 function showFollowUpQuestions(questions) {
+ console.log("Show follow Up Questions opened"+questions)
     const followUpContainer = document.getElementById("followUpContainer");
     followUpContainer.innerHTML = "<h3>Follow-Up Questions</h3>";
 
@@ -583,6 +595,7 @@ function startVoiceRecognition(inputId) {
 
 //////////////////////////////////////////////////////////
 function submitFollowUpAnswers(questions) {
+ console.log("submitFollow up answers opened"+questions )
     const followUpConversation = []; 
     const followUpContainer = document.getElementById("followUpContainer");
     
@@ -608,6 +621,7 @@ function submitFollowUpAnswers(questions) {
 let currentSymptoms = ""; 
 let intialsymptom="";
 async function askGemini() {
+ console.log("askGemini opened)
     const prompt = document.getElementById("prompt").value;
     intialsymptom=prompt;
     currentSymptoms=prompt;
