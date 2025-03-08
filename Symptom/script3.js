@@ -155,17 +155,21 @@ async function sendRequestToGemini(prompt) {
     }
 }
 
-
-function processApiResponse(jsonResponse) {
- console.log("processApiResponse Opened"+jsonResponse)
+function processApiResponse(responseText) {
+    console.log("processApiResponse Opened" + responseText);
     try {
-        const response = JSON.parse(jsonResponse);
-        console.log("API Response processed successfully", response);
 
-        updateOutput(response);
+        if (responseText.trim().startsWith("{")) {
+            const response = JSON.parse(responseText);
+            console.log("API Response processed successfully", response);
+            updateOutput(response);
+        } else {
+        
+            console.log("Received plain text response:", responseText);
+            document.getElementById("output").textContent = responseText;
+        }
     } catch (error) {
         console.error("Error processing API response: " + error.message);
-      
         sendRequestToGemini(currentSymptoms);
     }
 }
