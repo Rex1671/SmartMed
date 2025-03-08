@@ -156,17 +156,26 @@ async function sendRequestToGemini(prompt) {
 }
 
 function processApiResponse(responseText) {
-    console.log("processApiResponse Opened" + responseText);
+    console.log("processApiResponse Opened: " + responseText);
     try {
-
-        if (responseText.trim().startsWith("{")) {
-            const response = JSON.parse(responseText);
-            console.log("API Response processed successfully", response);
-            updateOutput(response);
+      
+        let cleanedText = responseText.trim();
+        if (cleanedText.startsWith("```json")) {
+            cleanedText = cleanedText.replace(/^```json\s*/, "").replace(/\s*```$/, "");
+        }
+         if (cleanedText.startsWith("{")) {
+            const responseObj = JSON.parse(cleanedText);
+            updateOutput(responseObj);
         } else {
-        
-            console.log("Received plain text response:", responseText);
-            document.getElementById("output").textContent = responseText;
+           
+            const formattedText = cleanedText
+                .split("\n")
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .join("<br>");
+            const outputElement = document.getElementById("output");
+            outputElement.style.visibility = 'visible';
+            outputElement.innerHTML = formattedText;
         }
     } catch (error) {
         console.error("Error processing API response: " + error.message);
