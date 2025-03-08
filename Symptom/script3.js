@@ -2,7 +2,7 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 
-const API_KEY = "AIzaSyB02yYJ-YslH0c7KmCBiC7iQCHPiPO2xXg";
+const API_KEY = "AIzaSyDTMqspY_C4KUwAqozRE7STorg0-HZD2yU";
 
 
 function createPromptImage(previousConversation, symptoms, diagnosis) {
