@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const API_KEY = "AIzaSyAMVaJCmvrpE_gBXmYjnOBS_c7dbSB-92o";
+const API_KEY = "AIzaSyDTMqspY_C4KUwAqozRE7STorg0-HZD2yU";
 
 async function askGemini() {
     const prompt = document.getElementById("prompt").value;
